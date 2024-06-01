@@ -5,12 +5,14 @@ import { useParams } from "react-router-dom";
 
 function EquipementDetailsPage() {
   const [equipement, setEquipement] = useState(null);
-  const { EquipementId } = useParams();
+  const { equipementId } = useParams();
+
+  console.log("1*equipementId :", equipementId);
 
   useEffect(() => {
     async function fetchEquipementDetails() {
       try {
-        const response = await apiHandler.getEquipementDetails(EquipementId);
+        const response = await apiHandler.getEquipementDetails(equipementId);
 
         setEquipement(response.data);
       } catch (error) {
@@ -19,7 +21,7 @@ function EquipementDetailsPage() {
     }
 
     fetchEquipementDetails();
-  }, [EquipementId]);
+  }, [equipementId]);
 
   if (!equipement) {
     return <div>Loading...</div>;
