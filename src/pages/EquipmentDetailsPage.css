@@ -1,0 +1,17 @@
+.equipement-details {
+  margin: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.equipement-details h2 {
+  color: #336699;
+  margin-bottom: 10px;
+}
+
+.equipement-details p {
+  color: #555;
+  margin-bottom: 8px;
+}

@@ -23,8 +23,12 @@ class ApiHandler {
     );
   }
 
-  getAllEquipments() {
-    return this.api.get("/equipments");
+  getAllEquipments(page) {
+    return this.api.get(`/equipments?page=${page}`);
+  }
+
+  getEquipementDetails(equipmentId) {
+    return this.api.get(`/equipments/${equipmentId}`);
   }
 
   createJournal(journalData) {

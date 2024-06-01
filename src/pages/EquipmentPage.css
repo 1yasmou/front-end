@@ -1,7 +1,70 @@
-h2 {
-  color: #8a2be2; /* Mauve */
+.container-one {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-p {
-  color: #bf77f6; /* Mauve clair */
+.button-add {
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.EquipementListPage {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: flex-start;
+  margin: 20px 0;
+}
+
+.card {
+  margin: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  width: 18rem;
+}
+
+.card-body {
+  padding: 20px;
+  text-align: left;
+}
+
+.page-link {
+  cursor: pointer;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.page-link:disabled {
+  color: #6c757d;
+  pointer-events: none;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+}
+
+.page-item {
+  margin: 0 5px;
+}
+.card-title {
+  color: #ff6600;
+}
+
+.card-text {
+  color: #333;
+}
+.card-title {
+  color: #336699;
+}
+
+.card-body p {
+  color: #555;
 }

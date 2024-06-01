@@ -6,6 +6,7 @@ import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
 import UserProfilePage from "./pages/UserProfilePage";
 import EquipmentsPage from "./pages/EquipmentPage";
+import EquipmentDetailsPage from "./pages/EquipmentDetailsPage";
 import CreateJournalPage from "./pages/CreateJournalPage";
 import IsPublicLayout from "./components/IsPublicLayout";
 import IsPrivateLayout from "./components/IsPrivateLayout";
@@ -38,6 +39,11 @@ function App() {
           <Route path="/profile" Component={UserProfilePage} />
 
           <Route path="/equipments" Component={EquipmentsPage} />
+
+          <Route
+            path="/equipments/:equipementId"
+            Component={EquipmentDetailsPage}
+          />
 
           <Route path="/create-comment" Component={CreateCommentPage} />
         </Route>
