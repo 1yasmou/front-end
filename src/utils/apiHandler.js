@@ -34,11 +34,19 @@ class ApiHandler {
   createJournal(journalData) {
     return this.api.post("/journals", journalData);
   }
-  createComment(/*equipmentId,*/ commentData) {
-    return this.api.post(
-      `/equipments/6656fd89cd1462cbb55380ee/comments`,
-      commentData
-    );
+  createComment(equipmentId, commentData) {
+    return this.api.post(`/equipments/${equipmentId}/comments`, commentData);
+  }
+
+  getCommentsForEquipment(equipmentId) {
+    return this.api.get(`/equipments/${equipmentId}/comments`);
+  }
+  deleteComment(commentId) {
+    return this.api.delete(`/comments/${commentId}`);
+  }
+
+  updateComment(commentId, updatedCommentData) {
+    return this.api.put(`/comments/${commentId}`, updatedCommentData);
   }
 
   /*

@@ -1,17 +1,67 @@
-.equipement-details {
-  margin: 20px;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+.equipement-details form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 300px; /* Ajuster la largeur maximale selon vos besoins */
+  margin: 0 auto; /* Centrer horizontalement */
 }
 
-.equipement-details h2 {
-  color: #336699;
-  margin-bottom: 10px;
+.equipement-details form > div {
+  margin: 10px 0; /* Espacement entre les éléments du formulaire */
 }
 
-.equipement-details p {
-  color: #555;
-  margin-bottom: 8px;
+.equipement-details label {
+  font-weight: bold;
+}
+
+.equipement-details textarea {
+  width: 100%;
+  height: 150px;
+  padding: 10px;
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+.equipement-details select {
+  width: 100%;
+  padding: 5px;
+  font-size: 14px;
+  margin: 5px 0;
+}
+
+.equipement-details button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #008cba; /* Couleur de fond */
+  color: white; /* Couleur du texte */
+  border: none;
+  cursor: pointer;
+  margin: 10px 0;
+}
+
+.equipement-details button:hover {
+  background-color: #005f6b;
+}
+.button {
+  display: inline-block;
+  margin-right: 10px;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 3px;
+  padding: 2px 4px;
+}
+.submit-button {
+  background-color: #ff4136;
+  color: #fff;
+}
+.delete-button {
+  background-color: #ff4136;
+  color: #fff;
+}
+
+.edit-button {
+  background-color: #0074d9;
+  color: #fff;
 }
