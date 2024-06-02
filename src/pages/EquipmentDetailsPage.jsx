@@ -60,9 +60,14 @@ function EquipementDetailsPage() {
     const updatedComment =
       prompt("Modifier le commentaire :", comment.comment) || comment.comment;
     const updatedRating =
-      parseFloat(prompt("Modifier la note (1-5) :", comment.rating)) ||
+      parseInt(prompt("Modifier la note (1-5) :", comment.rating)) ||
       comment.rating;
-    if (updatedComment !== null && updatedRating !== null) {
+    if (
+      updatedComment !== null &&
+      updatedRating !== null &&
+      updatedRating >= 1 &&
+      updatedRating <= 5
+    ) {
       try {
         const updatedCommentData = {
           comment: updatedComment,
@@ -87,16 +92,19 @@ function EquipementDetailsPage() {
 
   ////////////////////////
 
-  const submitComment = async () => {
+  const submitComment = async (event) => {
+    event.preventDefault();
     try {
       const commentData = {
         comment: commentContent,
         rating: commentRating,
       };
       await apiHandler.createComment(equipementId, commentData);
-      setCommentContent(""); // Effacer le contenu du commentaire après l'envoi
-      setCommentRating(0); // Réinitialiser la note du commentaire
-      fetchComments(); // Rafraîchir la liste des commentaires après l'ajout
+      setCommentContent("");
+      setCommentRating(0);
+      // fetchComments();
+      const response = await apiHandler.getCommentsForEquipment(equipementId);
+      setComments(response.data);
     } catch (error) {
       console.error("Error adding comment: ", error);
     }

@@ -31,9 +31,6 @@ class ApiHandler {
     return this.api.get(`/equipments/${equipmentId}`);
   }
 
-  createJournal(journalData) {
-    return this.api.post("/journals", journalData);
-  }
   createComment(equipmentId, commentData) {
     return this.api.post(`/equipments/${equipmentId}/comments`, commentData);
   }

@@ -7,7 +7,6 @@ import LoginPage from "./pages/LoginPage";
 import UserProfilePage from "./pages/UserProfilePage";
 import EquipmentsPage from "./pages/EquipmentPage";
 import EquipmentDetailsPage from "./pages/EquipmentDetailsPage";
-import CreateJournalPage from "./pages/CreateJournalPage";
 import IsPublicLayout from "./components/IsPublicLayout";
 import IsPrivateLayout from "./components/IsPrivateLayout";
 import { useContext } from "react";
