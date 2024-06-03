@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import apiHandler from "../utils/apiHandler";
 import "./EquipmentDetailsPage.css";
 import { useParams } from "react-router-dom";
+import { AuthContext } from "../contexts/AuthContext";
 
 function EquipementDetailsPage() {
   const [equipement, setEquipement] = useState(null);
   const [comments, setComments] = useState([]);
   const [commentContent, setCommentContent] = useState("");
-  const [commentRating, setCommentRating] = useState(0);
+  const [commentRating, setCommentRating] = useState(1);
   const { equipementId } = useParams();
+  const { user } = useContext(AuthContext);
+  const [editCommentId, setEditCommentId] = useState(null);
 
   useEffect(() => {
     async function fetchEquipementDetails() {
@@ -57,56 +60,60 @@ function EquipementDetailsPage() {
 
   ///////////////////////
   const handleEditComment = async (comment) => {
-    const updatedComment =
-      prompt("Modifier le commentaire :", comment.comment) || comment.comment;
-    const updatedRating =
-      parseInt(prompt("Modifier la note (1-5) :", comment.rating)) ||
-      comment.rating;
-    if (
-      updatedComment !== null &&
-      updatedRating !== null &&
-      updatedRating >= 1 &&
-      updatedRating <= 5
-    ) {
-      try {
-        const updatedCommentData = {
-          comment: updatedComment,
-          rating: updatedRating,
-        };
-        await apiHandler.updateComment(comment._id, updatedCommentData);
-        const index = comments.findIndex((c) => c._id === comment._id);
-        if (index !== -1) {
-          const updatedComments = [...comments];
-          updatedComments[index] = {
-            ...comment,
-            comment: updatedComment,
-            rating: updatedRating,
-          };
-          setComments(updatedComments);
-        }
-      } catch (error) {
-        console.error("Error updating comment: ", error);
-      }
-    }
+    setCommentContent(comment.comment); // Ajout - Pré-remplir le contenu du commentaire lors de la modification
+    setCommentRating(comment.rating); // Ajout - Pré-remplir la note lors de la modification
+    setEditCommentId(comment._id); // Ajout - Stocker l'ID du commentaire en cours de modification
+  };
+
+  const handleCancelEdit = () => {
+    setCommentContent("");
+    setCommentRating(1);
+    setEditCommentId(null); //
   };
 
   ////////////////////////
 
   const submitComment = async (event) => {
     event.preventDefault();
-    try {
-      const commentData = {
-        comment: commentContent,
-        rating: commentRating,
-      };
-      await apiHandler.createComment(equipementId, commentData);
-      setCommentContent("");
-      setCommentRating(0);
-      // fetchComments();
-      const response = await apiHandler.getCommentsForEquipment(equipementId);
-      setComments(response.data);
-    } catch (error) {
-      console.error("Error adding comment: ", error);
+    if (editCommentId) {
+      // Mise à jour du commentaire
+      try {
+        const updatedCommentData = {
+          comment: commentContent,
+          rating: commentRating,
+        };
+        await apiHandler.updateComment(editCommentId, updatedCommentData);
+        const updatedComments = comments.map((comment) => {
+          if (comment._id === editCommentId) {
+            return {
+              ...comment,
+              comment: commentContent,
+              rating: commentRating,
+            };
+          }
+          return comment;
+        });
+        setComments(updatedComments);
+      } catch (error) {
+        console.error("Error Update comment: ", error);
+      }
+      handleCancelEdit();
+    } else {
+      try {
+        const commentData = {
+          comment: commentContent,
+          rating: commentRating,
+        };
+        await apiHandler.createComment(equipementId, commentData);
+        setCommentContent("");
+        setCommentRating(0);
+        setEditCommentId(null);
+        // fetchComments();
+        const response = await apiHandler.getCommentsForEquipment(equipementId);
+        setComments(response.data);
+      } catch (error) {
+        console.error("Error AJOUT comment: ", error);
+      }
     }
   };
 
@@ -160,30 +167,34 @@ function EquipementDetailsPage() {
               </>
             )}*/}
 
-            <button
-              className="button delete-button"
-              onClick={() => handleDeleteComment(comment._id)}
-            >
-              Supprimer
-            </button>
-            <button
-              className="button edit-button"
-              onClick={() => handleEditComment(comment)}
-            >
-              Modifier
-            </button>
+            {user._id === comment.author && (
+              <>
+                <button
+                  className="button delete-button"
+                  onClick={() => handleDeleteComment(comment._id)}
+                >
+                  Supprimer
+                </button>
+                <button
+                  className="button edit-button"
+                  onClick={() => handleEditComment(comment)}
+                >
+                  Modifier
+                </button>
+              </>
+            )}
           </li>
         ))}
       </ul>
 
-      <form>
+      <form onSubmit={submitComment}>
         <div>
           <label htmlFor="comment">Ajouter un commentaire:</label>
           <textarea
             id="comment"
             value={commentContent}
             onChange={handleCommentContentChange}
-            placeholder="Votre commentaire"
+            placeholder="commentaire:"
           />
         </div>
         <div>
@@ -193,123 +204,26 @@ function EquipementDetailsPage() {
             value={commentRating}
             onChange={handleCommentRatingChange}
           >
-            <option value={1}>1</option>
-            <option value={2}>2</option>
-            <option value={3}>3</option>
-            <option value={4}>4</option>
-            <option value={5}>5</option>
+            {[1, 2, 3, 4, 5].map((n) => {
+              return (
+                <option value={n} selected={n === commentRating}>
+                  {n}
+                </option>
+              );
+            })}
           </select>
         </div>
-        <button className="button submit-button" onClick={submitComment}>
-          Ajouter un commentaire
+        <button className="button submit-button" type="submit">
+          {editCommentId ? "Modifier" : "Ajouter un commentaire"}
         </button>
+        {editCommentId && (
+          <button className="button cancel-button" onClick={handleCancelEdit}>
+            Annuler
+          </button>
+        )}
       </form>
     </div>
   );
 }
 
 export default EquipementDetailsPage;
-
-/*import React, { useEffect, useState } from "react";
-import apiHandler from "../utils/apiHandler";
-import "./EquipmentDetailsPage.css";
-import { useParams } from "react-router-dom";
-
-function EquipementDetailsPage() {
-  const [equipement, setEquipement] = useState(null);
-  const [commentContent, setCommentContent] = useState("");
-  const [commentRating, setCommentRating] = useState(0);
-  const { equipementId } = useParams();
-
-  useEffect(() => {
-    async function fetchEquipementDetails() {
-      try {
-        const response = await apiHandler.getEquipementDetails(equipementId);
-        setEquipement(response.data);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-
-    fetchEquipementDetails();
-  }, [equipementId]);
-
-  const handleCommentContentChange = (event) => {
-    setCommentContent(event.target.value);
-    console.log("Nouvelle valeur de comment : ", event.target.value);
-  };
-
-  const handleCommentRatingChange = (event) => {
-    setCommentRating(event.target.value);
-    console.log("Nouvelle valeur de rating : ", event.target.value);
-  };
-
-  const submitComment = async () => {
-    console.log(
-      "Valeur de rating avant d'envoyer la requête : ",
-      commentRating
-    );
-    try {
-      const commentData = {
-        comment: commentContent,
-        rating: commentRating,
-      };
-      await apiHandler.createComment(equipementId, commentData);
-      console.log(
-        "Valeur de commentData après envoi la requête : ",
-        commentData
-      );
-    } catch (error) {
-      console.error("Error adding comment: ", error);
-    }
-  };
-
-  if (!equipement) {
-    return <div>Loading...</div>;
-  }
-
-  return (
-    <div className="equipement-details">
-      <h2>{equipement.inst_nom}</h2>
-      <p>
-        <strong>ADRESSE:</strong> {equipement.inst_adresse}
-      </p>
-      <p>
-        <strong>OBSERVATIONS:</strong> {equipement.inst_obs}
-      </p>
-      <p>
-        <strong>ARRONDISSEMENT:</strong> {equipement.arrondissement}
-      </p>
-
-      <form>
-        <div>
-          <label htmlFor="comment">Commentaires:</label>
-          <textarea
-            id="comment"
-            value={commentContent}
-            onChange={handleCommentContentChange}
-            placeholder="Votre commentaire"
-          />
-        </div>
-
-        <div>
-          <label htmlFor="rating">Note (de 1 à 5):</label>
-          <select
-            id="rating"
-            value={commentRating}
-            onChange={handleCommentRatingChange}
-          >
-            <option value={1}>1</option>
-            <option value={2}>2</option>
-            <option value={3}>3</option>
-            <option value={4}>4</option>
-            <option value={5}>5</option>
-          </select>
-        </div>
-        <button onClick={submitComment}>Ajouter un commentaire</button>
-      </form>
-    </div>
-  );
-}
-
-export default EquipementDetailsPage;*/
