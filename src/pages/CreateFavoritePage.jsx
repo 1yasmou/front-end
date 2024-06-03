@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import apiHandler from "../utils/apiHandler";
 import "./EquipmentPage.css";
 
-function CreateCommentPage() {
+function CreateFavoritePage() {
   const [commentForm, setCommentForm] = useState({ comment: "", rating: "" });
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -48,10 +48,10 @@ function CreateCommentPage() {
           ></textarea>
         </label>
 
-        <input type="submit" value="Create Comment" />
+        <input type="submit" value="Favorites" />
       </form>
     </div>
   );
 }
 
-export default CreateCommentPage;
+export default CreateFavoritePage;

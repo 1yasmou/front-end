@@ -140,6 +140,26 @@ function EquipementDetailsPage() {
             <p>
               <strong>Note:</strong> {comment.rating}
             </p>
+            {/*
+            {currentUser === comment.author && (
+              <>
+                <button
+                  className="button edit-button"
+                  onClick={() => handleEditComment(comment)}
+                >
+                  Modifier
+                </button>
+                <button
+                  className="button delete-button"
+                  onClick={() =>
+                    handleDeleteComment(comment._id, comment.author)
+                  }
+                >
+                  Supprimer
+                </button>
+              </>
+            )}*/}
+
             <button
               className="button delete-button"
               onClick={() => handleDeleteComment(comment._id)}

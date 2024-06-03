@@ -11,7 +11,7 @@ import IsPublicLayout from "./components/IsPublicLayout";
 import IsPrivateLayout from "./components/IsPrivateLayout";
 import { useContext } from "react";
 import { AuthContext } from "./contexts/AuthContext";
-import CreateCommentPage from "./pages/CreateCommentPage";
+import CreateFavoritePage from "./pages/CreateFavoritePage";
 
 function App() {
   const { isLoading } = useContext(AuthContext);
@@ -44,7 +44,7 @@ function App() {
             Component={EquipmentDetailsPage}
           />
 
-          <Route path="/create-comment" Component={CreateCommentPage} />
+          <Route path="/create-comment" Component={CreateFavoritePage} />
         </Route>
       </Routes>
     </>
