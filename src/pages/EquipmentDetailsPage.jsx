@@ -185,7 +185,11 @@ function EquipementDetailsPage() {
               <p>
                 <strong>Note:</strong> {comment.rating}
               </p>
-              <p>{comment.createdAt}</p>
+              {/*           
+              <p>
+                <strong>Date:</strong> {comment.createdAt}
+              </p>
+*/}
               {/*
             {currentUser === comment.author && (
               <>
@@ -206,22 +210,22 @@ function EquipementDetailsPage() {
               </>
             )}*/}
 
-              {user._id === comment.author && (
-                <>
-                  <button
-                    className="button delete-button"
-                    onClick={() => handleDeleteComment(comment._id)}
-                  >
-                    Supprimer
-                  </button>
-                  <button
-                    className="button edit-button"
-                    onClick={() => handleEditComment(comment)}
-                  >
-                    Modifier
-                  </button>
-                </>
-              )}
+              {/*  {user._id === comment.author && (*/}
+              <>
+                <button
+                  className="button delete-button"
+                  onClick={() => handleDeleteComment(comment._id)}
+                >
+                  Supprimer
+                </button>
+                <button
+                  className="button edit-button"
+                  onClick={() => handleEditComment(comment)}
+                >
+                  Modifier
+                </button>
+              </>
+              {/*)}*/}
 
               <p>.</p>
             </li>

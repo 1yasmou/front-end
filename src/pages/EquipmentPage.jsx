@@ -10,7 +10,7 @@ function EquipmentPage() {
   const [nbrOfPages, setNbrOfPages] = useState(1);
   const [searchPostalCode, setSearchPostalCode] = useState("");
 
-  /*const handleSearchEquipments = async (event) => {
+  /*const handleSearchEquipments = async (event) => { 
     //event.preventDefault();
     try {
       const response = await apiHandler.searchEquipmentsByPostalCode(
