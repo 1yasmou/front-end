@@ -206,7 +206,7 @@ function EquipementDetailsPage() {
               </>
             )}*/}
 
-              {user._id === comment.author && (
+              {user._id === comment.author._id && (
                 <>
                   <button
                     className="button delete-button"
