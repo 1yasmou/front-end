@@ -10,8 +10,8 @@ function EquipmentPage() {
   const [nbrOfPages, setNbrOfPages] = useState(1);
   const [searchPostalCode, setSearchPostalCode] = useState("");
 
-  const handleSearchEquipments = async (event) => {
-    event.preventDefault();
+  /*const handleSearchEquipments = async (event) => {
+    //event.preventDefault();
     try {
       const response = await apiHandler.searchEquipmentsByPostalCode(
         searchPostalCode
@@ -21,21 +21,24 @@ function EquipmentPage() {
     } catch (error) {
       setError(error.message);
     }
-  };
+  };*/
+
+  async function getEquipments(page, searchPostalCode) {
+    try {
+      const response = await apiHandler.getAllEquipments(
+        page,
+        searchPostalCode
+      );
+
+      setEquipments(response.data.equipments);
+      setNbrOfPages(response.data.totalPages);
+    } catch (error) {
+      setError(error.message);
+    }
+  }
 
   useEffect(() => {
-    async function getEquipments(page) {
-      try {
-        const response = await apiHandler.getAllEquipments(page);
-
-        setEquipments(response.data.equipments);
-        setNbrOfPages(response.data.totalPages);
-      } catch (error) {
-        setError(error.message);
-      }
-    }
-
-    getEquipments(currentPage);
+    getEquipments(currentPage, searchPostalCode);
   }, [currentPage]);
 
   return (
@@ -43,7 +46,17 @@ function EquipmentPage() {
       <div className="container-one">
         {/*filtrer par CP*/}
 
-        <form onSubmit={handleSearchEquipments}>
+        <form
+          onSubmit={(event) => {
+            event.preventDefault();
+
+            if (currentPage == 1) {
+              getEquipments(1, searchPostalCode);
+            } else {
+              setCurrentPage(1);
+            }
+          }}
+        >
           <input
             type="text"
             value={searchPostalCode}

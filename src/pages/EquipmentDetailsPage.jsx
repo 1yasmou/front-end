@@ -177,7 +177,7 @@ function EquipementDetailsPage() {
           {comments.map((comment) => (
             <li key={comment._id}>
               <p>
-                <strong>Auteur:</strong> {comment.author}
+                <strong>Auteur:</strong> {comment.author.email}
               </p>
               <p>
                 <strong>Commentaire:</strong> {comment.comment}
@@ -185,6 +185,7 @@ function EquipementDetailsPage() {
               <p>
                 <strong>Note:</strong> {comment.rating}
               </p>
+              <p>{comment.createdAt}</p>
               {/*
             {currentUser === comment.author && (
               <>

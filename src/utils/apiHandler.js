@@ -23,20 +23,15 @@ class ApiHandler {
     );
   }
 
-  getAllEquipments(page) {
-    return this.api.get(`/equipments?page=${page}`);
+  getAllEquipments(page, cp) {
+    return this.api.get(`/equipments?page=${page}&postalCode=${cp}`);
   }
-
   getEquipementDetails(equipmentId) {
     return this.api.get(`/equipments/${equipmentId}`);
   }
 
   createComment(equipmentId, commentData) {
     return this.api.post(`/equipments/${equipmentId}/comments`, commentData);
-  }
-
-  searchEquipmentsByPostalCode(searchPostalCode) {
-    return this.api.get(`/equipments?postalCode=${searchPostalCode}`);
   }
 
   getCommentsForEquipment(equipmentId) {
