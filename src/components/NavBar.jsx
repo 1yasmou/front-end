@@ -22,7 +22,7 @@ function NavBar() {
         <>
           <NavLink to="/profile">Profile</NavLink>
           <NavLink to="/equipments">Equipments</NavLink>
-          <NavLink to="/create-comment">Favorites</NavLink>
+          <NavLink to="/create-favorites">Favorites</NavLink>
           <button onClick={logOut}>Logout</button>
         </>
       )}

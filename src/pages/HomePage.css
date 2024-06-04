@@ -1,0 +1,7 @@
+.login-form-container {
+  display: flex;
+  justify-content: space-between;
+  border: 0;
+  outline: none;
+  box-shadow: none;
+}

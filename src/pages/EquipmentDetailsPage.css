@@ -65,3 +65,9 @@
   background-color: #0074d9;
   color: #fff;
 }
+
+.commentaires-container {
+  background-color: lightblue;
+  padding: 20px;
+  margin-top: 20px;
+}

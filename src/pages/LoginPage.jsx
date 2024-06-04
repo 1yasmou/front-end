@@ -1,6 +1,8 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import apiHandler from "../utils/apiHandler";
+import siteImage from "../assets/homePagePicSansBg.png";
+import "./LoginPage.css";
 
 function LoginPage() {
   const [loginForm, setLoginForm] = useState({ email: "", password: "" });
@@ -24,7 +26,7 @@ function LoginPage() {
   }
 
   return (
-    <div>
+    <div className="login-form-container">
       {error && <div>{error}</div>}
 
       <form method="post" onSubmit={handleSubmit}>
@@ -45,6 +47,7 @@ function LoginPage() {
 
         <input type="submit" value="Login" />
       </form>
+      <img src={siteImage} alt="logo-sports" />
     </div>
   );
 }

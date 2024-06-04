@@ -8,6 +8,20 @@ function EquipmentPage() {
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [nbrOfPages, setNbrOfPages] = useState(1);
+  const [searchPostalCode, setSearchPostalCode] = useState("");
+
+  const handleSearchEquipments = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await apiHandler.searchEquipmentsByPostalCode(
+        searchPostalCode
+      );
+      setEquipments(response.data.equipments);
+      setNbrOfPages(response.data.totalPages);
+    } catch (error) {
+      setError(error.message);
+    }
+  };
 
   useEffect(() => {
     async function getEquipments(page) {
@@ -25,26 +39,20 @@ function EquipmentPage() {
   }, [currentPage]);
 
   return (
-    /* <div>
-      {error && <div>{error}</div>}
-
-      {equipments.map((equipment) => {
-        return (
-          <div className="card light" key={equipment._id}>
-            <h2>{equipment.equip_nom}</h2> 
-            <p>{equipment.equip_numero}</p>
-          </div>
-        );
-      })}
-    </div>*/
-
-    /*********************************** */
-
     <div id="equipements">
       <div className="container-one">
-        {/*<Link to="/new-Equipement" className="button-add">
-          + Nouvel équipement
-    </Link>*/}
+        {/*filtrer par CP*/}
+
+        <form onSubmit={handleSearchEquipments}>
+          <input
+            type="text"
+            value={searchPostalCode}
+            onChange={(e) => setSearchPostalCode(e.target.value)}
+            placeholder="Entrez le code postal"
+          />
+          <button type="submit">Rechercher</button>
+        </form>
+
         <div className="EquipementListPage">
           {equipments.map(
             (
@@ -72,7 +80,7 @@ function EquipmentPage() {
                     className="btn btn-primary"
                     to={`/equipments/${equipment._id.toString()}`}
                   >
-                    En savoir + ({equipment._id.toString()})
+                    En savoir + {/*({equipment._id.toString()})*/}
                   </Link>
                 </div>
               </div>

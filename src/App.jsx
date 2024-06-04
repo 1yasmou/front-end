@@ -44,7 +44,7 @@ function App() {
             Component={EquipmentDetailsPage}
           />
 
-          <Route path="/create-comment" Component={CreateFavoritePage} />
+          <Route path="/create-favorites" Component={CreateFavoritePage} />
         </Route>
       </Routes>
     </>

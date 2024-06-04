@@ -35,6 +35,10 @@ class ApiHandler {
     return this.api.post(`/equipments/${equipmentId}/comments`, commentData);
   }
 
+  searchEquipmentsByPostalCode(searchPostalCode) {
+    return this.api.get(`/equipments?postalCode=${searchPostalCode}`);
+  }
+
   getCommentsForEquipment(equipmentId) {
     return this.api.get(`/equipments/${equipmentId}/comments`);
   }

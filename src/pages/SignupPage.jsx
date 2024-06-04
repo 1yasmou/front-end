@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import apiHandler from "../utils/apiHandler";
+import siteImage from "../assets/homePagePicSansBg.png";
+//import "./HomePage";
 
 function SignupPage() {
   const [signupForm, setSignupForm] = useState({ email: "", password: "" });
@@ -25,7 +27,7 @@ function SignupPage() {
   }
 
   return (
-    <div>
+    <div className="login-form-container">
       {error && <div>{error}</div>}
 
       <form method="post" onSubmit={handleSubmit}>
@@ -46,6 +48,7 @@ function SignupPage() {
 
         <input type="submit" value="Signup" />
       </form>
+      <img src={siteImage} alt="logo-sports" />
     </div>
   );
 }
