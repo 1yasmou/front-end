@@ -58,11 +58,10 @@ function EquipementDetailsPage() {
     }
   };
 
-  ///////////////////////
   const handleEditComment = async (comment) => {
-    setCommentContent(comment.comment); // Ajout - Pré-remplir le contenu du commentaire lors de la modification
-    setCommentRating(comment.rating); // Ajout - Pré-remplir la note lors de la modification
-    setEditCommentId(comment._id); // Ajout - Stocker l'ID du commentaire en cours de modification
+    setCommentContent(comment.comment);
+    setCommentRating(comment.rating);
+    setEditCommentId(comment._id);
   };
 
   const handleCancelEdit = () => {
@@ -116,20 +115,6 @@ function EquipementDetailsPage() {
       }
     }
   };
-
-  /*async function fetchDataAndDisplay() {
-    try {
-      const commentsWithAuthorDetails = await Comment.find().populate(
-        "author",
-        "email"
-      );
-
-      console.log(commentsWithAuthorDetails);
-    } catch (error) {
-      console.error(error);
-    }
-  }
-  fetchDataAndDisplay();*/
 
   if (!equipement) {
     return <div>Loading...</div>;
@@ -185,26 +170,10 @@ function EquipementDetailsPage() {
               <p>
                 <strong>Note:</strong> {comment.rating}
               </p>
-              <p>{comment.createdAt}</p>
-              {/*
-            {currentUser === comment.author && (
-              <>
-                <button
-                  className="button edit-button"
-                  onClick={() => handleEditComment(comment)}
-                >
-                  Modifier
-                </button>
-                <button
-                  className="button delete-button"
-                  onClick={() =>
-                    handleDeleteComment(comment._id, comment.author)
-                  }
-                >
-                  Supprimer
-                </button>
-              </>
-            )}*/}
+              <p>
+                {" "}
+                <strong>Date:</strong> {comment.createdAt}
+              </p>
 
               {user._id === comment.author._id && (
                 <>

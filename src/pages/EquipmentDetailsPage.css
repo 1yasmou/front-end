@@ -3,15 +3,16 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: 300px; /* Ajuster la largeur maximale selon vos besoins */
-  margin: 0 auto; /* Centrer horizontalement */
+  max-width: 300px;
+  margin: 0 auto;
 }
 
 .equipement-details form > div {
-  margin: 10px 0; /* Espacement entre les éléments du formulaire */
+  margin: 10px 0;
 }
 
 .equipement-details label {
+  color: red;
   font-weight: bold;
 }
 
@@ -21,6 +22,10 @@
   padding: 10px;
   font-size: 16px;
   margin: 5px 0;
+}
+
+.equipement-details {
+  background-color: red;
 }
 
 .equipement-details select {
@@ -33,8 +38,8 @@
 .equipement-details button {
   padding: 10px 20px;
   font-size: 16px;
-  background-color: #008cba; /* Couleur de fond */
-  color: white; /* Couleur du texte */
+  background-color: #9b00ba;
+  color: white;
   border: none;
   cursor: pointer;
   margin: 10px 0;
@@ -67,7 +72,16 @@
 }
 
 .commentaires-container {
-  background-color: lightblue;
+  background-color: #154945;
   padding: 20px;
   margin-top: 20px;
+}
+
+.commentaires-container h3 {
+  color: #fff;
+}
+
+#comment,
+#rating {
+  color: #e22424;
 }

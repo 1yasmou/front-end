@@ -19,29 +19,8 @@
   justify-content: space-around;
   align-items: flex-start;
   margin: 20px 0;
-}
-
-.card {
-  margin: 10px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  transition: 0.3s;
-  width: 18rem;
-}
-
-.card-body {
+  background-color: #154945;
   padding: 20px;
-  text-align: left;
-}
-
-.page-link {
-  cursor: pointer;
-  color: #007bff;
-  text-decoration: none;
-}
-
-.page-link:disabled {
-  color: #6c757d;
-  pointer-events: none;
 }
 
 .pagination {
@@ -54,17 +33,14 @@
 .page-item {
   margin: 0 5px;
 }
-.card-title {
-  color: #ff6600;
+
+.page-link {
+  cursor: pointer;
+  color: #007bff;
+  text-decoration: none;
 }
 
-.card-text {
-  color: #333;
-}
-.card-title {
-  color: #336699;
-}
-
-.card-body p {
-  color: #555;
+.page-link:disabled {
+  color: #6c757d;
+  pointer-events: none;
 }

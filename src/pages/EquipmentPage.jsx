@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import apiHandler from "../utils/apiHandler";
+import EquipmentCard from "../components/EquipmentCard";
 import "./EquipmentPage.css";
-import { Link, useNavigate, useParams } from "react-router-dom";
 
 function EquipmentPage() {
   const [equipments, setEquipments] = useState([]);
@@ -9,19 +9,6 @@ function EquipmentPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [nbrOfPages, setNbrOfPages] = useState(1);
   const [searchPostalCode, setSearchPostalCode] = useState("");
-
-  /*const handleSearchEquipments = async (event) => {
-    //event.preventDefault();
-    try {
-      const response = await apiHandler.searchEquipmentsByPostalCode(
-        searchPostalCode
-      );
-      setEquipments(response.data.equipments);
-      setNbrOfPages(response.data.totalPages);
-    } catch (error) {
-      setError(error.message);
-    }
-  };*/
 
   async function getEquipments(page, searchPostalCode) {
     try {
@@ -69,22 +56,19 @@ function EquipmentPage() {
         <div className="EquipementListPage">
           {equipments.map(
             (
-              equipment // Utilisation de la variable equipments
+              equipment
+              //!!!!EQUIPMENT CARD COMPONENT.
             ) => (
+              <EquipmentCard key={equipment.id} equipment={equipment} />
+
+              /*
               <div
                 key={equipment.id}
                 className="Equipement-item card"
                 style={{ width: "18rem" }}
               >
                 <div className="card-body">
-                  <h5 className="card-title">
-                    {equipment.inst_nom}{" "}
-                    {/*<span className="handicap-icon">
-                      <RenderIcon
-                        isHandicapped={equipment.inst_acc_handi_bool === "true"}
-                      />
-                    </span>*/}
-                  </h5>
+                  <h5 className="card-title">{equipment.inst_nom} </h5>
                   <p>{equipment.equip_type_name}</p>
                   <p className="card-text">
                     {equipment.inst_adresse} - {equipment.inst_cp}
@@ -93,14 +77,17 @@ function EquipmentPage() {
                     className="btn btn-primary"
                     to={`/equipments/${equipment._id.toString()}`}
                   >
-                    En savoir + {/*({equipment._id.toString()})*/}
+                    En savoir +
                   </Link>
                 </div>
-              </div>
+              </div>*/
             )
+            //!!!!EQUIPMENT CARD COMPONENT.
           )}
         </div>
       </div>
+
+      {/* pagination */}
       <div className="container-two">
         <ul className="pagination">
           <li className="page-item">

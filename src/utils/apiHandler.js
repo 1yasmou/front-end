@@ -6,7 +6,7 @@ class ApiHandler {
     this.api = axios.create({
       baseURL: API_BASE_URL,
     });
-
+    //ajout du token d'authentification à toutes les requêtes sortantes (token en local storage du browser)
     this.api.interceptors.request.use(
       (config) => {
         const authToken = localStorage.getItem("authToken");
@@ -44,12 +44,6 @@ class ApiHandler {
   updateComment(commentId, updatedCommentData) {
     return this.api.put(`/comments/${commentId}`, updatedCommentData);
   }
-
-  /*
-  createComment(commentData) {
-    return this.api.post(`/equipments/${equipmentId}/comments`);
-  }
-  */
 
   login(creadentials) {
     return this.api.post("/users/login", creadentials);
