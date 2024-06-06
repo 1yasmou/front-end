@@ -32,7 +32,7 @@ function EquipmentPage() {
     <div id="equipements">
       <div className="container-one">
         {/*filtrer par CP*/}
-
+        //////////////////////
         <form
           onSubmit={(event) => {
             event.preventDefault();
@@ -52,7 +52,7 @@ function EquipmentPage() {
           />
           <button type="submit">Rechercher</button>
         </form>
-
+        /////////////////////
         <div className="EquipementListPage">
           {equipments.map(
             (

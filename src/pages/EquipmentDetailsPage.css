@@ -12,7 +12,7 @@
 }
 
 .equipement-details label {
-  color: red;
+  color: white;
   font-weight: bold;
 }
 
@@ -23,10 +23,10 @@
   font-size: 16px;
   margin: 5px 0;
 }
-
+/*
 .equipement-details {
   background-color: red;
-}
+}*/
 
 .equipement-details select {
   width: 100%;
@@ -38,15 +38,18 @@
 .equipement-details button {
   padding: 10px 20px;
   font-size: 16px;
-  background-color: #9b00ba;
+  background-color: #007bff;
   color: white;
   border: none;
   cursor: pointer;
   margin: 10px 0;
 }
+.equipement-details h3 {
+  color: whitesmoke;
+}
 
 .equipement-details button:hover {
-  background-color: #005f6b;
+  background-color: #276b00;
 }
 .button {
   display: inline-block;
@@ -77,8 +80,8 @@
   margin-top: 20px;
 }
 
-.commentaires-container h3 {
-  color: #fff;
+.commentaires-container p {
+  color: whitesmoke;
 }
 
 #comment,
