@@ -48,11 +48,13 @@ function UserProfilePage() {
           <img src={userIcon} alt="User Icon" />
           <u>Type: </u> {user.isAdmin ? "Admin" : "Regular User"}
         </h2>
-        <h2>
+        <h3>
           <u>Id:</u> {user._id}
-        </h2>
+        </h3>
       </div>
-      <h2>User Comments</h2>
+      <p>*</p>
+      <p>*</p>
+      <h1>User Comments</h1>
 
       <ul>
         {userComments.map((comment) => (
