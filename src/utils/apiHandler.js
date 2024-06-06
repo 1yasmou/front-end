@@ -52,7 +52,9 @@ class ApiHandler {
   signup(data) {
     return this.api.post("/users/signup", data);
   }
-
+  getUserComments(userId) {
+    return this.api.get(`/comments/${userId}`);
+  }
   getUser() {
     return this.api.get("/users/me");
   }

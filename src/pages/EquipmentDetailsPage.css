@@ -49,7 +49,7 @@
 }
 
 .equipement-details button:hover {
-  background-color: #276b00;
+  background-color: darkblue;
 }
 .button {
   display: inline-block;
@@ -86,5 +86,5 @@
 
 #comment,
 #rating {
-  color: #e22424;
+  color: black;
 }

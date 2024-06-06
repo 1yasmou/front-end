@@ -1,0 +1,26 @@
+form {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+input[type="text"] {
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #00ffdd;
+  color: rgb(255, 255, 255);
+  border-radius: 5px;
+  cursor: pointer;
+  color: blue;
+}
+
+button:hover {
+  background-color: beige;
+}

@@ -3,6 +3,7 @@ import apiHandler from "../utils/apiHandler";
 import "./EquipmentDetailsPage.css";
 import { useParams } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
+import CommentCard from "../components/CommentCard";
 
 function EquipementDetailsPage() {
   const [equipement, setEquipement] = useState(null);
@@ -160,40 +161,13 @@ function EquipementDetailsPage() {
         <p> </p>
         <ul>
           {comments.map((comment) => (
-            <li key={comment._id}>
-              <p>
-                <strong>Auteur:</strong> {comment.author.email}
-              </p>
-              <p>
-                <strong>Commentaire:</strong> {comment.comment}
-              </p>
-              <p>
-                <strong>Note:</strong> {comment.rating}
-              </p>
-              <p>
-                {" "}
-                <strong>Date:</strong> {comment.createdAt}
-              </p>
-
-              {user._id === comment.author._id && (
-                <>
-                  <button
-                    className="button delete-button"
-                    onClick={() => handleDeleteComment(comment._id)}
-                  >
-                    Supprimer
-                  </button>
-                  <button
-                    className="button edit-button"
-                    onClick={() => handleEditComment(comment)}
-                  >
-                    Modifier
-                  </button>
-                </>
-              )}
-
-              <p>.</p>
-            </li>
+            <CommentCard
+              key={comment._id}
+              comment={comment}
+              handleDeleteComment={handleDeleteComment}
+              handleEditComment={handleEditComment}
+              user={user}
+            />
           ))}
         </ul>
 

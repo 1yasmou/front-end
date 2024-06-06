@@ -26,7 +26,10 @@
   color: #000;
   size: 9px;
 }
-
+p {
+  color: #000;
+  size: 9px;
+}
 .btn-primary {
   background-color: #007bff;
   color: #fff;

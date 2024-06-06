@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import apiHandler from "../utils/apiHandler";
 import EquipmentCard from "../components/EquipmentCard";
 import "./EquipmentPage.css";
+import SearchForm from "../components/SearchForm";
 
 function EquipmentPage() {
   const [equipments, setEquipments] = useState([]);
@@ -28,22 +29,21 @@ function EquipmentPage() {
     getEquipments(currentPage, searchPostalCode);
   }, [currentPage]);
 
+  /* const handleSubmit = (event) => {
+    event.preventDefault();
+    if (currentPage === 1) {
+      getEquipments(1, searchPostalCode);
+    } else {
+      setCurrentPage(1);
+    }
+  };*/
+
   return (
     <div id="equipements">
       <div className="container-one">
-        {/*filtrer par CP*/}
-        //////////////////////
-        <form
-          onSubmit={(event) => {
-            event.preventDefault();
+        {/*
 
-            if (currentPage == 1) {
-              getEquipments(1, searchPostalCode);
-            } else {
-              setCurrentPage(1);
-            }
-          }}
-        >
+        <form onSubmit={handleSubmit}>
           <input
             type="text"
             value={searchPostalCode}
@@ -52,38 +52,20 @@ function EquipmentPage() {
           />
           <button type="submit">Rechercher</button>
         </form>
-        /////////////////////
-        <div className="EquipementListPage">
-          {equipments.map(
-            (
-              equipment
-              //!!!!EQUIPMENT CARD COMPONENT.
-            ) => (
-              <EquipmentCard key={equipment.id} equipment={equipment} />
+  */}
 
-              /*
-              <div
-                key={equipment.id}
-                className="Equipement-item card"
-                style={{ width: "18rem" }}
-              >
-                <div className="card-body">
-                  <h5 className="card-title">{equipment.inst_nom} </h5>
-                  <p>{equipment.equip_type_name}</p>
-                  <p className="card-text">
-                    {equipment.inst_adresse} - {equipment.inst_cp}
-                  </p>
-                  <Link
-                    className="btn btn-primary"
-                    to={`/equipments/${equipment._id.toString()}`}
-                  >
-                    En savoir +
-                  </Link>
-                </div>
-              </div>*/
-            )
-            //!!!!EQUIPMENT CARD COMPONENT.
-          )}
+        <SearchForm
+          searchPostalCode={searchPostalCode}
+          setSearchPostalCode={setSearchPostalCode}
+          getEquipments={getEquipments}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
+
+        <div className="EquipementListPage">
+          {equipments.map((equipment) => (
+            <EquipmentCard key={equipment.id} equipment={equipment} />
+          ))}
         </div>
       </div>
 

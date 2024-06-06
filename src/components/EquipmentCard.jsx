@@ -14,10 +14,7 @@ function EquipmentCard({ equipment }) {
         <p className="card-text">
           {equipment.inst_adresse} - {equipment.inst_cp}
         </p>
-        <Link
-          className="btn btn-primary"
-          to={`/equipments/${equipment._id.toString()}`}
-        >
+        <Link className="btn btn-primary" to={`/equipments/${equipment._id}`}>
           En savoir +
         </Link>
       </div>
